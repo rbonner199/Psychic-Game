@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+
+    <title>Page Title</title>
+
+    <script>
+        var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+        // track wins /losses / guesses
+        var wins = 0;
+        var losses = 0;
+        var guesses = 9;
+
+        // Math.random(): random between 0 and 1 * 26
+        // alphabet[round down(0.5 * 26)] -> alphabet [13] -> m
+        
+        
+        document.onkeypress = function(event) {
+            var guess = event.key;
+            var computer = alphabet[Math.floor(Math.random() * alphabet.length)];
+                console.log(computer)
+            if (guess === computer) {
+                // true code
+                //adding to wins total when the guess is correct
+                wins++;
+                // reset guesses
+                guesses = 9;
+            }
+            //subtracking the number of guesses we have left if wrong
+            else {
+                // false code
+                guesses--;
+                // If we run out of guesses add a loss in :(
+                if (guesses === 0) {
+                    losses++;
+                    // Reset when we run out of our 9 guesses
+                    guesses = 9;
+                    
+                
+                }
+               
+            
+            }
+            
+            // Update span tags; reference spans by their ID
+            // formula: document.getElementById('id').innerHTML='[text here]';
+            document.getElementById('wins').innerHTML = wins;
+            document.getElementById('losses').innerHTML = losses;
+            document.getElementById('guesses').innerHTML = guesses;
+            
+        }
+        
+        //When key is pressed / run the loop
+    </script>
+</head>
+
+<body>
+    <h1> The Psychic Game</h1>
+    <p>Guess what letter I'm thinking of!</p>
+    <p>Wins:</p><span id="wins"></span>
+    <p>Losses:</p><span id="losses"></span>
+    <p>Guesses:</p><span id="guesses"></span>
+</body>
+
+</html>
